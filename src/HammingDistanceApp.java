@@ -111,6 +111,24 @@ public class HammingDistanceApp extends JFrame {
             row.add(distanceFields[i]);
             leftPanel.add(row);
         }
+        
+        calculateButton.addActionListener(e -> {
+        	// collect the values we'll need first
+        	String selectedStation = (String) compareDropdown.getSelectedItem();
+        	
+        	// Now, we'll iterate through a loop, replicating the different hamming
+        	// distances
+        	for(int i = 0; i < 5; i++) {
+        		
+                // Here we'll need to populate the fields with the correct
+                // number of matching radio stations based off of the value of i
+                // We can reuse our function from before to populate this value
+                TreeSet<String> numMatches = getMatchingStations(selectedStation, i);
+                
+                int valMatches = numMatches.size();
+                distanceFields[i].setText(Integer.toString(valMatches));      		
+        	}
+        });
 
         // Row 11: Add Station field + button
         JPanel row11 = new JPanel(new FlowLayout(FlowLayout.LEFT));
