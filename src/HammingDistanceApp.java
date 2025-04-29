@@ -136,6 +136,26 @@ public class HammingDistanceApp extends JFrame {
         addButton = new JButton("Add Station");
         row11.add(addButton);
         row11.add(addStationField);
+        addButton.addActionListener( e -> {
+        	// Capture the value that was placed into the addStationField
+        	String sf1 = addStationField.getText().trim().toUpperCase();
+        	
+        	// Make sure it's the proper size before adding it into the list
+        	if(sf1.length() == 4) {
+            	// Add it onto the List
+            	stationSet.add(sf1);
+            	
+            	// clear the original drop down
+            	compareDropdown.removeAllItems();
+
+            	// re-populate the list with the added Radio Station
+                for(String stid : stationSet) {
+                	compareDropdown.addItem(stid);
+                }
+        	}else {
+        		System.out.println("Please enter a valid 4-letter radio station");
+        	}        
+        });
         leftPanel.add(row11);
 
         // === Right Panel (col-6): Free space ===
