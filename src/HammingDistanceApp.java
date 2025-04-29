@@ -85,8 +85,8 @@ public class HammingDistanceApp extends JFrame {
         JPanel row11 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         addStationField = new JTextField(5);
         addButton = new JButton("Add Station");
-        row11.add(addStationField);
         row11.add(addButton);
+        row11.add(addStationField);
         leftPanel.add(row11);
 
         // === Right Panel (col-6): Free space ===
