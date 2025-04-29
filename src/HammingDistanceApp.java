@@ -28,18 +28,22 @@ public class HammingDistanceApp extends JFrame {
         row1.add(new JLabel("Enter Hamming Dist:"));
         hammingField = new JTextField(2);
         hammingField.setEditable(false);
-        hammingSlider = new JSlider(0, 4, 0);
+        hammingSlider = new JSlider(1, 4, 1);
+        hammingField.setText(String.valueOf(hammingSlider.getValue()));
+        row1.add(hammingField);
+        leftPanel.add(row1);
+        
+        //Row 12 : Slider on its own row
+        JPanel row12 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
         hammingSlider.setMajorTickSpacing(1);
         hammingSlider.setPaintTicks(true);
         hammingSlider.setPaintLabels(true);
-        hammingField.setText(String.valueOf(hammingSlider.getValue()));
         hammingSlider.addChangeListener((ChangeEvent e) ->
-                hammingField.setText(String.valueOf(hammingSlider.getValue()))
-        );
-        row1.add(hammingField);
-        row1.add(hammingSlider);
-        leftPanel.add(row1);
-
+        hammingField.setText(String.valueOf(hammingSlider.getValue())));
+        row12.add(hammingSlider);
+        leftPanel.add(row12);
+        
         // Row 2: "Show Station" button
         JPanel row2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         showButton = new JButton("Show Station");
