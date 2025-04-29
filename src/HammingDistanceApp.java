@@ -18,6 +18,9 @@ public class HammingDistanceApp extends JFrame {
     private JTextField addStationField;
     private TreeSet<String> stationSet = new TreeSet<>();
 
+    /**
+     * 
+     */
     public HammingDistanceApp() {
         super("CMPS 367: Hamming Distance App");
 
@@ -152,9 +155,16 @@ public class HammingDistanceApp extends JFrame {
                 for(String stid : stationSet) {
                 	compareDropdown.addItem(stid);
                 }
+                
+                // Select the newly added Radio Station to be the current target
+                compareDropdown.setSelectedItem(sf1);
+                
         	}else {
         		System.out.println("Please enter a valid 4-letter radio station");
         	}        
+        	
+        	// Reset the text field for the input field
+        	addStationField.setText("");
         });
         leftPanel.add(row11);
 
