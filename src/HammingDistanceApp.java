@@ -59,6 +59,23 @@ public class HammingDistanceApp extends JFrame {
         
         JPanel row3 = new JPanel(new BorderLayout());
         resultArea = new JTextArea(10, 25);
+        showButton.addActionListener(e -> {
+        	String selectedStation = (String) compareDropdown.getSelectedItem();
+        	int distance = hammingSlider.getValue();
+        	
+        	// Declare and initialize a TreeSet with all of the matches found of
+        	// the selected Radio Station and other Radio Stations with matching Hamming Distances
+        	TreeSet<String> matchingTree = getMatchingStations(selectedStation, distance);
+        	String returnString = "";
+        	
+        	// Now, well populate this string variable to populate the text field
+        	for(String s1 : matchingTree) {
+        		returnString += s1 + "\n";
+        	}
+        	
+        	// Add the string to the textField
+        	resultArea.setText(returnString);
+        });
         resultArea.setEditable(false);
         row3.add(new JScrollPane(resultArea), BorderLayout.CENTER);
         leftPanel.add(row3);
