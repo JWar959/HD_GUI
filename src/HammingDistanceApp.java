@@ -1,6 +1,10 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Scanner;
+import java.util.TreeSet;
 
 public class HammingDistanceApp extends JFrame {
 
@@ -12,6 +16,7 @@ public class HammingDistanceApp extends JFrame {
     private JTextField[] distanceFields;
     private JTextArea resultArea;
     private JTextField addStationField;
+    private TreeSet<String> stationSet = new TreeSet<>();
 
     public HammingDistanceApp() {
         super("CMPS 367: Hamming Distance App");
@@ -51,6 +56,7 @@ public class HammingDistanceApp extends JFrame {
         leftPanel.add(row2);
 
         // Row 3: Text Area to show station results
+        
         JPanel row3 = new JPanel(new BorderLayout());
         resultArea = new JTextArea(10, 25);
         resultArea.setEditable(false);
@@ -61,6 +67,14 @@ public class HammingDistanceApp extends JFrame {
         JPanel row4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         row4.add(new JLabel("Compare with:"));
         compareDropdown = new JComboBox<>();
+        
+        // Here, we'll need to populate the dropdown menu. We can do this by 
+        // calling our function to populate a TreeSet with all of the Radio Station
+        // ID's
+        loadStationsFromFile();
+        for(String stid : stationSet) {
+        	compareDropdown.addItem(stid);
+        }
         row4.add(compareDropdown);
         leftPanel.add(row4);
 
@@ -107,6 +121,81 @@ public class HammingDistanceApp extends JFrame {
         pack();
         setLocationRelativeTo(null); // Center on screen
         setVisible(true);
+    }
+    
+    /**
+     * This function is going to populate a TreeSet with the Radio station ID's that
+     * that we can populate the drop down menu with
+     */
+    private void loadStationsFromFile() {
+    	try(BufferedReader br = new BufferedReader(new FileReader("Mesonet.txt"))){
+    		
+    		// Skip the lines before the station ID's begin
+			String sTemp; 
+			String line;
+			
+			// Exhaust the first few lines that do not pertain to the station Id's
+			while(	(line =  br.readLine()) != null) {
+				
+				// Capture the first word in the line			
+				Scanner inSS = new Scanner(line);
+				sTemp = inSS.next();
+				
+				if(sTemp.equals("STID")) {
+					// if we're here, than we're at the starting point of where
+					// we want to start checking
+					break;
+				}
+				
+			}
+			
+			// Now that we're here, we're at the start of the station ID's
+			int arrIdx = 0;
+			while( (line = br.readLine()) != null) {
+				
+				// Capture the first word in the line			
+				Scanner inSS = new Scanner(line);
+				sTemp = inSS.next();
+				
+				// Push the stID into the array holding stID names
+				stationSet.add(sTemp);
+			}	
+    	}catch(Exception err) {
+    		System.out.println("Error: " + err.getMessage());
+    	}
+    }
+    
+    private int getHammingDistance(String s1, String s2) {
+    	int dist = 0;
+    	for(int i = 0; i < s1.length(); i++) {
+    		if(s1.charAt(i) != s2.charAt(i)) {
+    			// If we're here, than the corresponding letters don't match
+    			// so we can increase the hamming distance by 1
+    			dist++;
+    		}
+    	} // end of for loop
+    	// We can now safely return the hamming distance collected
+    	return dist;
+    }
+    
+    private TreeSet<String> getMatchingStations(String selectedStation, int hammingDist){
+    	// Declare a new TreeSet to hold the values of all the matches
+    	TreeSet<String> returnTree = new TreeSet<>();
+    	
+    	for(String otherStation : stationSet) {
+    		// Make sure that we're not checking against the selected station
+    		if( !(otherStation.equals(selectedStation))) {
+    			// Call our function to calculate the hamming distance of the
+    			// other station against the selected station. If this value
+    			// matches the hammingDist, we can add it to the TreeSet that 
+    			// we're going to return
+    			if(getHammingDistance(otherStation, selectedStation) == hammingDist) {
+    				returnTree.add(otherStation);
+    			}
+    		}
+    	}
+    	
+    	return returnTree;
     }
 
     public static void main(String[] args) {
