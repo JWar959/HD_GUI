@@ -17,6 +17,7 @@ public class HammingDistanceApp extends JFrame {
     private JTextArea resultArea;
     private JTextField addStationField;
     private TreeSet<String> stationSet = new TreeSet<>();
+    private Histogram histogramPanel = new Histogram();
 
     /**
      * 
@@ -115,22 +116,27 @@ public class HammingDistanceApp extends JFrame {
             leftPanel.add(row);
         }
         
+        // calculateButton Action Listener
         calculateButton.addActionListener(e -> {
         	// collect the values we'll need first
         	String selectedStation = (String) compareDropdown.getSelectedItem();
         	
         	// Now, we'll iterate through a loop, replicating the different hamming
-        	// distances
+        	// distances and keeping track of the hamming distances for later graphical representations
+        	int[] counts = new int[5];
         	for(int i = 0; i < 5; i++) {
         		
                 // Here we'll need to populate the fields with the correct
                 // number of matching radio stations based off of the value of i
                 // We can reuse our function from before to populate this value
                 TreeSet<String> numMatches = getMatchingStations(selectedStation, i);
-                
+                counts[i] = numMatches.size();
                 int valMatches = numMatches.size();
                 distanceFields[i].setText(Integer.toString(valMatches));      		
         	}
+        	
+        	// Ensure to update the histogram
+        	histogramPanel.setHammingCounts(counts);
         });
 
         // Row 11: Add Station field + button
@@ -174,6 +180,10 @@ public class HammingDistanceApp extends JFrame {
         JLabel freeZoneLabel = new JLabel("FREE ZONE: You are free to fill this area with a creative idea");
         freeZoneLabel.setHorizontalAlignment(JLabel.CENTER);
         rightPanel.add(freeZoneLabel, BorderLayout.NORTH);
+        
+        // Add the histogram to the right panel
+        histogramPanel.setPreferredSize(new Dimension(400,300));
+        rightPanel.add(histogramPanel, BorderLayout.CENTER);
 
         // === Add both panels to main container ===
         mainPanel.add(leftPanel);
