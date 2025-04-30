@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Histogram Class constructs a histogram to display the corresponding number of radio
+ * station Id matches for each Hamming Distance of 0 through 4. 
+ */
 public class Histogram extends JPanel {
 	// Declare an array to hold the hamming distances of 0 - 4
 	private int[] hammingCounts = new int[5];
@@ -16,6 +20,11 @@ public class Histogram extends JPanel {
 		repaint();
 	}
 	
+	/**
+	 * Overriden paintComponent constructor that will draw our histogram. 
+	 * @param Graphic object g that will be cast as a Graphics2D object to help draw our
+	 * histogram
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
