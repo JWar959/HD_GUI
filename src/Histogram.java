@@ -13,6 +13,11 @@ public class Histogram extends JPanel {
 			Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN
 	};
 	
+	/**
+	 * Function that sets the number of Hamming Distance matches
+	 * @param counts An int array that sets the number of matching radio station Id's from
+	 * Hamming Distances of 0 through 4.
+	 */
 	public void setHammingCounts(int[] counts) {
 		this.hammingCounts = counts;
 		// We'll also need to re-draw the panel at this part since the data 

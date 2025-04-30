@@ -13,6 +13,11 @@ public class PieChart extends JPanel{
 			Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN
 	};
 	
+	/**
+	 * Function that sets the number of Hamming Counts for the Pie Chart
+	 * @param counts An int array that contains the values of all the Hamming Counts for
+	 * the different Hamming Distances between 0 and 4.
+	 */
 	public void setHammingCounts(int[] counts) {
 		this.hammingCounts = counts;
 		// ensure to repaint here to update the panel with the new data

@@ -6,6 +6,11 @@ import java.io.FileReader;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+/**
+ * Class for the HammingDistanceApp. Constructs a JFrame consisting of a left pane
+ * and a right pane that displays information about a selected radio station Id, and the 
+ * Hamming Distances of other radio station Id's in association to it.
+ */
 public class HammingDistanceApp extends JFrame {
 
     private JComboBox<String> stationDropdown;
