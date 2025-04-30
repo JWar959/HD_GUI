@@ -1,7 +1,8 @@
 /**
  * CMPS 367 - Advanced Topics
  * Group Project 3: Hamming Distance Application
- *
+ * GitHub Repo: https://github.com/JWar959/HD_GUI
+ * 
  * Group Members:
  * - John Warren
  * - Prashant Shah
