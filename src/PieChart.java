@@ -4,6 +4,7 @@ import java.awt.*;
 public class PieChart extends JPanel{
 	
 	private int[] hammingCounts = new int[5];
+
 	private Color[] sliceColors = {
 			Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN
 	};
@@ -30,7 +31,7 @@ public class PieChart extends JPanel{
 			return;
 		}
 		
-		int diameter = Math.min(getWidth(), getHeight()) - 40;
+		int diameter = Math.min(getWidth(), getHeight()) - 80;
 		int x = (getWidth() - diameter) / 2;
 		int y = 10;
 		int startAngle = 0;

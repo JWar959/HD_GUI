@@ -185,7 +185,7 @@ public class HammingDistanceApp extends JFrame {
         
         // Add the histogram to the right panel
         histogramPanel.setPreferredSize(new Dimension(400,300));
-        pieChartPanel.setPreferredSize(new Dimension(400,300));
+        pieChartPanel.setPreferredSize(new Dimension(500,300));
         rightPanel.add(histogramPanel);
         rightPanel.add(pieChartPanel);
 
@@ -198,7 +198,8 @@ public class HammingDistanceApp extends JFrame {
         // Window settings
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        setLocationRelativeTo(null); // Center on screen
+        // Make sure it's centered
+        setLocationRelativeTo(null); 
         setVisible(true);
     }
     
