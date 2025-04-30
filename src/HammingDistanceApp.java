@@ -61,9 +61,14 @@ public class HammingDistanceApp extends JFrame {
         leftPanel.add(row2);
 
         // Row 3: Text Area to show station results
+        JPanel row3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        resultArea = new JTextArea();
+        resultArea.setEditable(false);
         
-        JPanel row3 = new JPanel(new BorderLayout());
-        resultArea = new JTextArea(10, 25);
+        JScrollPane scrollPane = new JScrollPane(resultArea);
+        scrollPane.setPreferredSize(new Dimension(275, 150));
+        scrollPane.setMaximumSize(new Dimension(275, 150)); 
+        
         showButton.addActionListener(e -> {
         	String selectedStation = (String) compareDropdown.getSelectedItem();
         	int distance = hammingSlider.getValue();
@@ -81,8 +86,7 @@ public class HammingDistanceApp extends JFrame {
         	// Add the string to the textField
         	resultArea.setText(returnString);
         });
-        resultArea.setEditable(false);
-        row3.add(new JScrollPane(resultArea), BorderLayout.CENTER);
+        row3.add(scrollPane);
         leftPanel.add(row3);
 
         // Row 4: Compare With dropdown
