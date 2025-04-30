@@ -43,6 +43,8 @@ public class Histogram extends JPanel {
 			// Next we can set the label
 			g2.setColor(Color.BLACK);
 			g2.drawString("Distance " + i + ": " + hammingCounts[i], 10, startY + i * (barHeight + spacing) + 25);
+
+			
 		}
 	} // end of paintComponent	
 } // end of Histogram

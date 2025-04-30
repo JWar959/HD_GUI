@@ -18,6 +18,7 @@ public class HammingDistanceApp extends JFrame {
     private JTextField addStationField;
     private TreeSet<String> stationSet = new TreeSet<>();
     private Histogram histogramPanel = new Histogram();
+    private PieChart pieChartPanel = new PieChart();
 
     /**
      * 
@@ -137,6 +138,7 @@ public class HammingDistanceApp extends JFrame {
         	
         	// Ensure to update the histogram
         	histogramPanel.setHammingCounts(counts);
+        	pieChartPanel.setHammingCounts(counts);
         });
 
         // Row 11: Add Station field + button
@@ -176,14 +178,16 @@ public class HammingDistanceApp extends JFrame {
 
         // === Right Panel (col-6): Free space ===
         JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BorderLayout());
-        JLabel freeZoneLabel = new JLabel("FREE ZONE: You are free to fill this area with a creative idea");
-        freeZoneLabel.setHorizontalAlignment(JLabel.CENTER);
-        rightPanel.add(freeZoneLabel, BorderLayout.NORTH);
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        JLabel freeZoneLabel = new JLabel("Hamming Distance Visualizations");
+        freeZoneLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        rightPanel.add(freeZoneLabel);
         
         // Add the histogram to the right panel
         histogramPanel.setPreferredSize(new Dimension(400,300));
-        rightPanel.add(histogramPanel, BorderLayout.CENTER);
+        pieChartPanel.setPreferredSize(new Dimension(400,300));
+        rightPanel.add(histogramPanel);
+        rightPanel.add(pieChartPanel);
 
         // === Add both panels to main container ===
         mainPanel.add(leftPanel);
