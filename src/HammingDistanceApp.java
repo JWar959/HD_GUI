@@ -26,9 +26,6 @@ public class HammingDistanceApp extends JFrame {
     public HammingDistanceApp() {
         super("CMPS 367: Hamming Distance App");
 
-//        // === Main Panel: Two columns (col-6, col-6) ===
-//        JPanel mainPanel = new JPanel(new GridLayout(1, 2));
-
         // === Left Panel: Contains all required UI elements ===
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
@@ -207,12 +204,6 @@ public class HammingDistanceApp extends JFrame {
         splitPane.setDividerSize(0);
         
         add(splitPane);
-
-//        // === Add both panels to main container ===
-//        mainPanel.add(leftPanel);
-//        mainPanel.add(rightPanel);
-//
-//        add(mainPanel);
 
         // Window settings
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
