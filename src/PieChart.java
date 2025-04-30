@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * PieChart class that will construct a Pie Chart displaying the proportions of the different
+ * Hamming Distances from the selected radio station Id.
+ */
 public class PieChart extends JPanel{
 	
 	private int[] hammingCounts = new int[5];
@@ -15,7 +19,10 @@ public class PieChart extends JPanel{
 		repaint();
 	}
 	
-	//Override the constructor for more control
+	/**
+	 * Overridden constructor that will draw our pie chart displaying the proportions of the
+	 * different Hamming Distances from the selected radio station Id.
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
