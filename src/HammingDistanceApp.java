@@ -1,3 +1,18 @@
+/**
+ * CMPS 367 - Advanced Topics
+ * Group Project 3: Hamming Distance Application
+ *
+ * Group Members:
+ * - John Warren
+ * - Prashant Shah
+ *
+ * Description:
+ * This application allows users to analyze and visualize the Hamming distances
+ * between Mesonet station IDs. The left panel provides controls for selecting
+ * a station, calculating distances, and viewing results. The right panel
+ * is reserved for visualizations such as histograms and pie charts.
+ */
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
