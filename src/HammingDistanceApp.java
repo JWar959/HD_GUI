@@ -21,7 +21,17 @@ public class HammingDistanceApp extends JFrame {
     private PieChart pieChartPanel = new PieChart();
 
     /**
+     * Constructor for the HammingDistanceApp. Constructs a Left Panel that allows users
+     * to make selections on the app from the following features on the left panel: 
+     * - Hamming Distance Slider
+     * - Show Station Button
+     * - Compare with Drop Down menu
+     * - Calculate HD Button
+     * - Add Station Input Field and Button
      * 
+     * Constructs the following onto the right panel:
+     * - Histogram displaying the number of radio stations and their corresponding Hamming Distance
+     * - Pie Chart displaying the portions of the different Hamming Distances.
      */
     public HammingDistanceApp() {
         super("CMPS 367: Hamming Distance App");
@@ -255,6 +265,13 @@ public class HammingDistanceApp extends JFrame {
     	}
     }
     
+    /**
+     * Returns the Hamming Distance between two radio station Id's.
+     * @param s1 The first radio station Id
+     * @param s2 The second radio station id
+     * @return int value representing the hamming distance between the two paramaters that were passed
+     * in
+     */
     private int getHammingDistance(String s1, String s2) {
     	int dist = 0;
     	for(int i = 0; i < s1.length(); i++) {
@@ -268,6 +285,14 @@ public class HammingDistanceApp extends JFrame {
     	return dist;
     }
     
+    /**
+     * Returns a TreeSet of all radio stations that match the specified Hamming Distance 
+     * from the Selected radio station Id that is being passed in as a parameter
+     * @param selectedStation The selected radio station Id to test the other radio station Id's against
+     * @param hammingDist The specified hamming distance value that we want to find matches for
+     * @return TreeSet of all radio station Id's that share the specified hamming distance from the selected radio
+     * station Id
+     */
     private TreeSet<String> getMatchingStations(String selectedStation, int hammingDist){
     	// Declare a new TreeSet to hold the values of all the matches
     	TreeSet<String> returnTree = new TreeSet<>();
